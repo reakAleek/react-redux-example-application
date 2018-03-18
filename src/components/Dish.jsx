@@ -16,7 +16,7 @@ const veggie = (
             <Tooltip title="Veggy"
                 position="top"
                 trigger="mouseenter"
-                delay="300"
+                delay="150"
                 style={{cursor: 'help'}}>
                 <a className="button is-small is-static">
                     <span className="icon">
@@ -42,11 +42,17 @@ const hotness = (
             </span>
         </div>
         <div className="control">
-            <a className="button is-small is-static">
-                <span className="icon">
-                    <i className="fa fa-fire has-text-danger" aria-hidden="true"></i>
-                </span>
-            </a>
+            <Tooltip title="Hot"
+                    position="top"
+                    trigger="mouseenter"
+                    delay="150"
+                    style={{cursor: 'help'}}>
+                <a className="button is-small is-static">
+                    <span className="icon">
+                        <i className="fa fa-fire has-text-danger" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </Tooltip>
         </div>
     </div>
 );
@@ -58,7 +64,7 @@ const nameInput = (dish, onChangeName) => (
                             placeholder='Name' />
 )
 
-const Dish = ({ dish, onRemove, onChangeName, onChangePrice }) => (
+const Dish = ({ dish, onRemove, onChangeName, onChangePrice, onChangeAddInfo }) => (
     <div className='box' style={{marginBottom: '1rem'}}>
             <div className="field is-grouped">
                 <p className="control is-expanded">
@@ -74,12 +80,22 @@ const Dish = ({ dish, onRemove, onChangeName, onChangePrice }) => (
                 </p>
             </div>
 
-            <div className="field">
-                <p className="control">
+            <div className="field has-addons">
+                <p className="control is-expanded">
                     <input className='input'
+                            type='number'
+                            step='0.01'
+                            min='0'
                             value={dish.price}
                             onChange={ ev => onChangePrice(dish.id, ev.target.value) }
                             placeholder='Price' />
+                </p>
+                <p className="control">
+                    <a className="button is-static">
+                    <span className="icon">
+                        <i className="fa fa-eur" aria-hidden="true"/>
+                    </span>
+                    </a>
                 </p>
             </div>
 
@@ -89,6 +105,8 @@ const Dish = ({ dish, onRemove, onChangeName, onChangePrice }) => (
                         rows="1" 
                         className="textarea" 
                         placeholder="Additional infos..."
+                        value={dish.addInfo}
+                        onChange={ ev => onChangeAddInfo(dish.id, ev.target.value)}
                         onFocus={ ev => ev.target.style.height = '10rem' }
                         onBlur={ ev => {ev.target.style.height = '3rem'; ev.target.scrollTop = 0; } }
                         ></textarea>
@@ -105,10 +123,6 @@ const Dish = ({ dish, onRemove, onChangeName, onChangePrice }) => (
     </div>
 );
 
-Dish.componentDidMount = () => {
-    console.log('OK');
-}
-
 const dishPropType = PropTypes.shape({
     name: PropTypes.string,
     price: PropTypes.string,
@@ -119,7 +133,8 @@ Dish.propTypes = {
     dish: dishPropType.isRequired,
     onRemove: PropTypes.func,
     onChangeName: PropTypes.func,
-    onChangePrice: PropTypes.func
+    onChangePrice: PropTypes.func,
+    onChangeAddInfo: PropTypes.func
 };
 
 export default Dish;

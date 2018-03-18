@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 import Dish from '../components/Dish.jsx';
-import { removeDish, updateDishName, updateDishPrice } from '../actions/dishes';
+import {
+    removeDish, 
+    updateDishName,
+    updateDishPrice,
+    updateDishAdditionalInfo
+} from '../actions/dishes';
 
 const mapDispatchToProps = (dispatch) => ({
     onRemove: (id) => {
@@ -11,6 +16,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onChangePrice: (id, price) => {
         dispatch(updateDishPrice(id, price))
+    },
+    onChangeAddInfo: (id, addInfo) => {
+        dispatch(updateDishAdditionalInfo(id, addInfo))
     }
 });
 

@@ -5,7 +5,8 @@ import {
     UPDATE_DISH_NAME,
     UNDO_DISHES,
     REDO_DISHES,
-    UPDATE_DISH_PRICE
+    UPDATE_DISH_PRICE,
+    UPDATE_DISH_ADDITIONAL_INFO
 } from './ActionTypes';
 
 export const removeDish = (id) => ({ 
@@ -31,6 +32,16 @@ export const updateDishPrice = (id, price) => ({
     price: price
 });
 
-export const undoDishes = () => ({ type: UNDO_DISHES });
+export const updateDishAdditionalInfo = (id, addInfo) => ({
+    type: UPDATE_DISH_ADDITIONAL_INFO,
+    id: id,
+    addInfo: addInfo
+});
 
-export const redoDishes = () => ({ type: REDO_DISHES })
+export const undoDishes = () => ({
+     type: UNDO_DISHES
+    });
+
+export const redoDishes = () => ({ 
+    type: REDO_DISHES
+})
