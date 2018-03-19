@@ -4,10 +4,10 @@
   "homepage": "https://reakaleek.github.io/react-redux-example-application/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --env.NODE_ENV=production",
+    "build": "webpack -p --env.NODE_ENV=production",
     "dev": "webpack-dev-server --env.NODE_ENV=dev"
   },
-  "author": "",
+  "author": "Jan Calanog",
   "license": "ISC",
   "dependencies": {
     "bulma": "^0.6.2",
