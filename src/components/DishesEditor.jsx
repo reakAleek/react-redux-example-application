@@ -4,7 +4,7 @@ import Dish from '../containers/Dish.jsx';
 import UndoRedo from '../containers/UndoRedoDishes.jsx';
 import AddDish from '../containers/AddDish.jsx';
 
-const Dishes = ({ dishes }) => (
+const DishesEditor = ({ dishes }) => (
     <div>
         <UndoRedo />
             <ul>
@@ -20,8 +20,8 @@ const Dishes = ({ dishes }) => (
     </div>
 );
 
-Dishes.propTypes = { 
+DishesEditor.propTypes = { 
     dishes: PropTypes.array.isRequired,
  };
 
-export default Dishes;
+export default DishesEditor;

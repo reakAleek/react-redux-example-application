@@ -8,7 +8,7 @@ const dishItem = (dish, index) => {
             <li className="dish-item" key={index}>
                 <div className="dish-item__label is-size-5">
                     <span>{ dish.name }</span>
-                    <span>{ !dish.price || '€' } { dish.price.toLocaleString('de-DE') }</span>
+                    <span>{ !dish.price || '€' } { dish.price.replace('.', ',') }</span>
                 </div>
                 <div className="dish-item__additional-info has-text-grey-light">
                     { dish.addInfo }
@@ -35,7 +35,7 @@ const Preview = ({ dishes }) => (
                 </header>
                 <div className="card-content" style={{minHeight: '5rem'}}>
                     <div>
-                        { (dishes.length > 0 && dishes[0].name != '') ? '' : 'No content'}
+                        { (dishes.length > 0) ? '' : 'No content'}
                     </div>
                     <ul className="dish-list">
                         {

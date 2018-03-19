@@ -1,5 +1,3 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
 export const ADD_DISH = 'ADD_DISH';
 export const REMOVE_DISH = 'REMOVE_DISH';
 export const UPDATE_DISH_NAME = 'UPDATE_DISH_NAME';

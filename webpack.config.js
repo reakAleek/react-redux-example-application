@@ -1,23 +1,21 @@
 var path = require('path');
-// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-/*const uglifyjs = new UglifyJsPlugin({
+const uglifyjs = new UglifyJsPlugin({
   sourceMap: true,
   uglifyOptions: {
     output: { 
-      comments: false,
-      beautify: true,
+      comments: false
     },
   }
-});*/
+});
 
 const extractText = new ExtractTextPlugin('style.css');
 
-module.exports = () => {
-
+module.exports = () => {  
   return {
-    plugins: [ extractText ],
+    plugins: [ extractText, uglifyjs ],
     entry: {
       app: [
         './src/index.js'
@@ -41,7 +39,7 @@ module.exports = () => {
                       // If you are having trouble with urls not resolving add this setting.
                       // See https://github.com/webpack-contrib/css-loader#url
                       url: false,
-                      minimize: false,
+                      minimize: true,
                       sourceMap: true
                   }
               }, 

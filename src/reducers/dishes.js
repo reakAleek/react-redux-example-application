@@ -15,9 +15,9 @@ var dishId = 0;
 const initialState = {
     byId: {
         [dishId]: { id: dishId,
-            name: '',
-            price: '',
-            addInfo: ''
+            name: 'Wiener Schnitzel',
+            price: '8.50',
+            addInfo: 'Mit Pommes oder Kartoffelsalat.'
         }
     },
     allIds: [dishId++]
