@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tippy';
 
-const veggie = (
+const veggie = (value, onChange) => (
     <div className="field is-expanded has-addons">
         <div className="control">
             <span className="select is-small">
-                <select>
-                    <option>No</option>
-                    <option>Yes</option>
+                <select value={value} onChange={ ev => onChange(ev.target.value) }>
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
                 </select>
             </span>
         </div>
@@ -29,15 +29,15 @@ const veggie = (
 );
 
 
-const hotness = (
+const hotness = (value, onChange) => (
     <div className="field is-expanded has-addons">
         <div className="control">
             <span className="select is-small">
-                <select>
-                    <option>No</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select value={value} onChange={ ev => onChange(ev.target.value)}>
+                    <option value={0}>No</option>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
                 </select>
             </span>
         </div>
@@ -64,7 +64,7 @@ const nameInput = (dish, onChangeName) => (
                             placeholder='Name' />
 )
 
-const Dish = ({ dish, onRemove, onChangeName, onChangePrice, onChangeAddInfo }) => (
+const Dish = ({ dish, onRemove, onChangeName, onChangePrice, onChangeAddInfo, onChangeHot, onChangeVeggie }) => (
     <div className='box' style={{marginBottom: '1rem'}}>
             <div className="field is-grouped">
                 <p className="control is-expanded">
@@ -114,10 +114,10 @@ const Dish = ({ dish, onRemove, onChangeName, onChangePrice, onChangeAddInfo }) 
             </div>
             <div className="field is-grouped">
                 <div className="control">
-                    { veggie }
+                    { veggie(dish.veggie, (value) => onChangeVeggie(dish.id, value)) }
                 </div>
                 <div className="control">
-                    { hotness }
+                    { hotness(dish.hot, (value) => onChangeHot(dish.id, value)) }
                 </div>
             </div>
     </div>
@@ -134,7 +134,9 @@ Dish.propTypes = {
     onRemove: PropTypes.func,
     onChangeName: PropTypes.func,
     onChangePrice: PropTypes.func,
-    onChangeAddInfo: PropTypes.func
+    onChangeAddInfo: PropTypes.func,
+    onChangeVeggie: PropTypes.func,
+    onChangeHot: PropTypes.func
 };
 
 export default Dish;

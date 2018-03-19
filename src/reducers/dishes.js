@@ -5,7 +5,9 @@ import {
     UPDATE_DISH_PRICE,
     UNDO_DISHES,
     REDO_DISHES,
-    UPDATE_DISH_ADDITIONAL_INFO
+    UPDATE_DISH_ADDITIONAL_INFO,
+    UPDATE_DISH_VEGGIE,
+    UPDATE_DISH_HOT
 } from '../actions/ActionTypes';
 import undoable from './undoable';
 const _ = require('lodash');
@@ -17,7 +19,9 @@ const initialState = {
         [dishId]: { id: dishId,
             name: 'Wiener Schnitzel',
             price: '8.50',
-            addInfo: 'Mit Pommes oder Kartoffelsalat.'
+            addInfo: 'Mit Pommes oder Kartoffelsalat.',
+            veggie: false,
+            hot: 0
         }
     },
     allIds: [dishId++]
@@ -35,6 +39,8 @@ const dishesReducer = (state = initialState, action) => {
                         name: '',
                         price: '',
                         addInfo: '',
+                        veggie: false,
+                        hot: 0
                     }
                 },
                 allIds: [...state.allIds, dishId++]
@@ -59,6 +65,12 @@ const dishesReducer = (state = initialState, action) => {
             return state;
         case UPDATE_DISH_ADDITIONAL_INFO:
             return updatedDish(state, action.id, { addInfo: action.addInfo })
+        
+        case UPDATE_DISH_VEGGIE:
+            return updatedDish(state, action.id, { veggie: action.veggie })
+        
+        case UPDATE_DISH_HOT:
+            return updatedDish(state, action.id, { hot: action.hot })
         default:
             return state;
     }

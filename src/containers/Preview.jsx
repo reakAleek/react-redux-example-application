@@ -13,6 +13,10 @@ const dishItem = (dish, index) => {
                 <div className="dish-item__additional-info has-text-grey-light">
                     { dish.addInfo }
                 </div>
+                <div>
+                        { (dish.veggie) ? (<span className="icon"><i className="fa fa-leaf has-text-success" aria-hidden="true"/></span>) : null }
+                        { Array.apply(null, Array(dish.hot)).map( (_, index) => <span key={index} className="icon"><i className="fa fa-fire has-text-danger" aria-hidden="true"/></span>) }
+                    </div>
             </li>
         )
     : null;

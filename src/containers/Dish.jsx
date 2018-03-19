@@ -4,7 +4,9 @@ import {
     removeDish, 
     updateDishName,
     updateDishPrice,
-    updateDishAdditionalInfo
+    updateDishAdditionalInfo,
+    updateDishVeggie,
+    updateDishHot
 } from '../actions/dishes';
 
 const mapDispatchToProps = (dispatch) => ({
@@ -19,6 +21,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     onChangeAddInfo: (id, addInfo) => {
         dispatch(updateDishAdditionalInfo(id, addInfo))
+    },
+    onChangeVeggie: (id, isVeggie) => {
+        dispatch(updateDishVeggie(id, isVeggie))
+    },
+    onChangeHot: (id, hot) => {
+        dispatch(updateDishHot(id, hot))
     }
 });
 

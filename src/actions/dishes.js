@@ -6,7 +6,9 @@ import {
     UNDO_DISHES,
     REDO_DISHES,
     UPDATE_DISH_PRICE,
-    UPDATE_DISH_ADDITIONAL_INFO
+    UPDATE_DISH_ADDITIONAL_INFO,
+    UPDATE_DISH_VEGGIE,
+    UPDATE_DISH_HOT
 } from './ActionTypes';
 
 export const removeDish = (id) => ({ 
@@ -36,6 +38,18 @@ export const updateDishAdditionalInfo = (id, addInfo) => ({
     type: UPDATE_DISH_ADDITIONAL_INFO,
     id: id,
     addInfo: addInfo
+});
+
+export const updateDishVeggie = (id, isVeggie) => ({
+    type: UPDATE_DISH_VEGGIE,
+    id: id,
+    veggie: isVeggie === 'true'
+});
+
+export const updateDishHot = (id, hot) => ({
+    type: UPDATE_DISH_HOT,
+    id: id,
+    hot: Number(hot)
 });
 
 export const undoDishes = () => ({
