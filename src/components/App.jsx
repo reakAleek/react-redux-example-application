@@ -1,9 +1,10 @@
 import React from 'react';
 // import Count from '../containers/Count';
 // import Buttons from '../containers/Buttons';
-import DishesEditor from '../containers/DishesEditor';
 import Preview from '../containers/Preview.jsx';
-
+import UndoRedoDishesButtons from '../containers/UndoRedoDishesButtons.jsx';
+import AddDishButton from '../containers/AddDishButton.jsx';
+import DishList from '../containers/DishList';
 
 const App = () => (
     <div>
@@ -23,10 +24,12 @@ const App = () => (
             <div className="container is-fluild">
                 <div className='columns'>
                     <div className='column is-4' style={{ backgroundColor: 'whitesmoke' }}>
-                            <DishesEditor />
+                        <UndoRedoDishesButtons />
+                        <DishList />
+                        <AddDishButton />
                     </div>
                     <div className='column is-8' style={{ backgroundColor: 'lightslategrey' }}>
-                            <Preview />
+                        <Preview />
                     </div>
                 </div>
             </div>

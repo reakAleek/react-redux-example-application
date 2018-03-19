@@ -6,7 +6,7 @@ import { addDish } from '../actions/dishes';
 const buttonStyle = { width: '100%' }
 
 
-let AddDish = ({ dispatch }) => (
+let AddDishButton = ({ dispatch }) => (
         <button style={buttonStyle}
                 className='button is-success' 
                 onMouseDown={ () => dispatch(addDish()) }>
@@ -15,8 +15,8 @@ let AddDish = ({ dispatch }) => (
         </button>
 );
 
-AddDish.propTypes = {
+AddDishButton.propTypes = {
     dispatch: PropTypes.func.isRequired
 }
 
-export default connect()(AddDish);
+export default connect()(AddDishButton);

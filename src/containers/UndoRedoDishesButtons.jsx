@@ -25,7 +25,7 @@ const conditionalButton = (condition, onClick, text, icon) =>  (<button style={b
     <span>{ text }</span>
 </button>);
 
-let UndoRedoDishes = ({ undo, redo, isUndoActive, isRedoActive }) => (
+let UndoRedoDishesButtons = ({ undo, redo, isUndoActive, isRedoActive }) => (
         <div className={'buttons'}>
             { 
                 conditionalButton(
@@ -46,11 +46,11 @@ let UndoRedoDishes = ({ undo, redo, isUndoActive, isRedoActive }) => (
         </div>    
 );
 
-UndoRedoDishes.propTypes = {
+UndoRedoDishesButtons.propTypes = {
     undo: PropTypes.func,
     redo: PropTypes.func,
     isUndoActive: PropTypes.bool,
     isRedoActive: PropTypes.bool
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UndoRedoDishes);
+export default connect(mapStateToProps, mapDispatchToProps)(UndoRedoDishesButtons);

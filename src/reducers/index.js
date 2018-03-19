@@ -1,11 +1,6 @@
 import dishes from './dishes';
-import menus from './menus';
 import { combineReducers } from 'redux'
 
-
-const rootReducer = combineReducers({
-    menus,
-    dishes
-})
+const rootReducer = combineReducers({ dishes })
 
 export default rootReducer;

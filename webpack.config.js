@@ -1,21 +1,21 @@
 var path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+//const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const uglifyjs = new UglifyJsPlugin({
+/*const uglifyjs = new UglifyJsPlugin({
   sourceMap: true,
   uglifyOptions: {
     output: { 
       comments: false
     },
   }
-});
+});*/
 
 const extractText = new ExtractTextPlugin('style.css');
 
 module.exports = () => {  
   return {
-    plugins: [ extractText, uglifyjs ],
+    plugins: [ extractText ],
     entry: {
       app: [
         './src/index.js'

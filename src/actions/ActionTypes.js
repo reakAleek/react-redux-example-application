@@ -5,11 +5,8 @@ export const UPDATE_DISH_PRICE = 'UPDATE_DISH_PRICE';
 export const UPDATE_DISH_ADDITIONAL_INFO = 'UPDATE_DISH_ADDITIONAL_INFO';
 export const UPDATE_DISH_VEGGIE = 'UPDATE_DISH_VEGGIE';
 export const UPDATE_DISH_HOT = 'UPDATE_DISH_HOT';
-export const ADD_MENU = 'ADD_MENU';
 export const UNDO_DISHES = 'UNDO_DISHES';
 export const REDO_DISHES = 'REDO_DISHES';
-export const FETCH_MENUS = 'FETCH_MENUS';
-export const FETCH_MENUS_SUCCESS = 'FETCH_MENUS_SUCCESS';
 
 export const UNDO = 'UNDO';
 export const REDO = 'REDO';
