@@ -1,22 +1,16 @@
 import { 
     ADD_DISH, 
     REMOVE_DISH, 
-    UPDATE_DISH_NAME,
-    UPDATE_DISH_PRICE,
     UNDO_DISHES,
     REDO_DISHES,
-    UPDATE_DISH_ADDITIONAL_INFO,
-    UPDATE_DISH_VEGGIE,
-    UPDATE_DISH_HOT
+    UPDATE_DISH
 } from '../actions/ActionTypes';
 import undoable from './undoable';
 const _ = require('lodash');
 
-var dishId = 0;
-
 const initialState = {
     byId: {
-        [dishId]: { id: dishId,
+        [0]: { id: 0,
             name: 'Wiener Schnitzel',
             price: '8.50',
             addInfo: 'Mit Pommes oder Kartoffelsalat.',
@@ -24,7 +18,8 @@ const initialState = {
             hot: 0
         }
     },
-    allIds: [dishId++]
+    allIds: [0],
+    nextId: 1
 }
 
 const dishesReducer = (state = initialState, action) => {
@@ -34,8 +29,8 @@ const dishesReducer = (state = initialState, action) => {
             return  {
                 byId: { 
                     ...state.byId,
-                    [dishId]: { 
-                        id: dishId,
+                    [state.nextId]: { 
+                        id: state.nextId,
                         name: '',
                         price: '',
                         addInfo: '',
@@ -43,47 +38,29 @@ const dishesReducer = (state = initialState, action) => {
                         hot: 0
                     }
                 },
-                allIds: [...state.allIds, dishId++]
+                allIds: [...state.allIds, state.nextId],
+                nextId: state.nextId + 1
             };
 
         case REMOVE_DISH:
             return {
+                ...state,
                 byId: _.omit(state.byId, action.id),
                 allIds: state.allIds.filter(id => id !== action.id)
             };
-
-        case UPDATE_DISH_NAME:
-            if (action.name !== state.byId[action.id].name) {
-                return updatedDish(state, action.id, { name: action.name });
-            }
-            return state;
-
-        case UPDATE_DISH_PRICE:
-            if (action.price !== state.byId[action.id].price) {
-                return updatedDish(state, action.id, { price: action.price })
-            }
-            return state;
-        case UPDATE_DISH_ADDITIONAL_INFO:
-            return updatedDish(state, action.id, { addInfo: action.addInfo })
         
-        case UPDATE_DISH_VEGGIE:
-            return updatedDish(state, action.id, { veggie: action.veggie })
+        case UPDATE_DISH:
+            return {
+                ...state,
+                byId: {
+                    ...state.byId,
+                    [action.id]: Object.assign({}, state.byId[action.id], action.dish)
+                }
+            }
         
-        case UPDATE_DISH_HOT:
-            return updatedDish(state, action.id, { hot: action.hot })
         default:
             return state;
     }
-};
-
-const updatedDish = (state, id, obj) => {
-    return {
-        ...state,
-        byId: {
-            ...state.byId,
-            [id]: Object.assign({}, state.byId[id], obj)
-        }
-    };
 };
 
 export default undoable(dishesReducer, UNDO_DISHES, REDO_DISHES);

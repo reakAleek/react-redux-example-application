@@ -2,32 +2,16 @@ import { connect } from 'react-redux';
 import Dish from '../components/Dish.jsx';
 import {
     removeDish, 
-    updateDishName,
-    updateDishPrice,
-    updateDishAdditionalInfo,
-    updateDishVeggie,
-    updateDishHot
+    updateDish
 } from '../actions/dishes';
 
 const mapDispatchToProps = (dispatch) => ({
-    onRemove: (id) => {
-      dispatch(removeDish(id))
-    },
-    onChangeName: (id, name) => {
-        dispatch(updateDishName(id, name))
-    },
-    onChangePrice: (id, price) => {
-        dispatch(updateDishPrice(id, price))
-    },
-    onChangeAddInfo: (id, addInfo) => {
-        dispatch(updateDishAdditionalInfo(id, addInfo))
-    },
-    onChangeVeggie: (id, isVeggie) => {
-        dispatch(updateDishVeggie(id, isVeggie))
-    },
-    onChangeHot: (id, hot) => {
-        dispatch(updateDishHot(id, hot))
-    }
+    onRemove: (id) => dispatch(removeDish(id)),
+    onChangeName: (id, name) => dispatch(updateDish(id, { name })),
+    onChangePrice: (id, price) =>  dispatch(updateDish(id, { price })),
+    onChangeAddInfo: (id, addInfo) => dispatch(updateDish(id, { addInfo })),
+    onChangeVeggie: (id, veggie) => dispatch(updateDish(id, { veggie })),
+    onChangeHot: (id, hot) => dispatch(updateDish(id, { hot: Number(hot) }))
 });
 
 export default connect(null, mapDispatchToProps)(Dish);
