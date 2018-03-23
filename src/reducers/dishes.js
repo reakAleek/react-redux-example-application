@@ -10,7 +10,8 @@ const _ = require('lodash');
 
 const initialState = {
     byId: {
-        [0]: { id: 0,
+        [0]: {
+            id: 0,
             name: 'Wiener Schnitzel',
             price: '8.50',
             addInfo: 'Mit Pommes oder Kartoffelsalat.',
@@ -46,7 +47,7 @@ const dishesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 byId: _.omit(state.byId, action.id),
-                allIds: state.allIds.filter(id => id !== action.id)
+                allIds: _.without(state.allIds, action.id)
             };
         
         case UPDATE_DISH:
@@ -54,10 +55,10 @@ const dishesReducer = (state = initialState, action) => {
                 ...state,
                 byId: {
                     ...state.byId,
-                    [action.id]: Object.assign({}, state.byId[action.id], action.dish)
+                    [action.id]: _.assign({}, state.byId[action.id], action.dish)
                 }
             }
-        
+
         default:
             return state;
     }

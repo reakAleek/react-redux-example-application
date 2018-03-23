@@ -1,6 +1,8 @@
 import { UNDO, REDO } from '../actions/ActionTypes';
-
+import _ from 'lodash';
 const UNDO_LIMIT = 50;
+
+
 
 export default (reducer, undoActionType = UNDO, redoActionType = REDO) => {
 
@@ -14,23 +16,23 @@ export default (reducer, undoActionType = UNDO, redoActionType = REDO) => {
         const { past, present, future } = state;
         switch (action.type) {
             case undoActionType:
-                return (past.length <= 0) ? state : {
-                    past: past.slice(1, past.length),
+                return _.isEmpty(past) ? state : {
+                    past: _.tail(past),
                     present: past[0] || present,
                     future: [present, ...future]
                 };
     
             case redoActionType:
-                return (future.length <= 0) ? state : {
+                return _.isEmpty(future) ? state : {
                     past: [present, ...past],
                     present: future[0] || present,
-                    future: future.slice(1, future.length)  
+                    future: _.tail(future) 
                 };
 
             default:
                 const newPresent = reducer(present, action);
                 return (present !== newPresent) ? {
-                    past: [present, ...past].slice(0, (UNDO_LIMIT >= 0) ? UNDO_LIMIT : undefined),
+                    past: _.take([present, ...past], UNDO_LIMIT),
                     present: newPresent,
                     future: []
                 } : state;
