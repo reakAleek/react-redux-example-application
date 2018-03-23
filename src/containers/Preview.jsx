@@ -10,7 +10,7 @@ const dishItem = (dish, index) => {
                     <span>{ dish.name }</span>
                     <span>{ !dish.price || '€' } { dish.price.replace('.', ',') }</span>
                 </div>
-                <div className="dish-item__additional-info has-text-grey-light">
+                <div style={{whiteSpace: 'pre-line'}} className="dish-item__additional-info has-text-grey-light">
                     { dish.addInfo }
                 </div>
                 <div>

@@ -59,9 +59,9 @@ const hotness = (value, onChange) => (
 
 const nameInput = (dish, onChangeName) => (
     <input className='input' 
-                            value={dish.name}
-                            onChange={ ev => onChangeName(dish.id, ev.target.value) }
-                            placeholder='Name' />
+            value={dish.name}
+            onChange={ ev => onChangeName(dish.id, ev.target.value) }
+            placeholder='Name' />
 )
 
 const Dish = ({ dish, onRemove, onChangeName, onChangePrice, onChangeAddInfo, onChangeHot, onChangeVeggie }) => (
